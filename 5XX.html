@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="robots" content="noindex, nofollow" />
+		<title>NamePros: Edge Network Error</title>
+		<style type="text/css">
+			/* <[CDATA[ */
+			
+			body {
+				font-family: 'Open Sans', 'Segoe UI', sans-serif;
+				font-size: 14pt;
+				padding: 2em;
+				margin: 0;
+			}
+
+			h1 {
+				font-weight: 300;
+				padding: 0;
+				margin: 0;
+				color: #555;
+				font-size: 27pt;
+			}
+				h1.title {
+					color: #c55;
+				}
+
+			p {
+				padding: 0;
+				margin: .8em 0;
+			}
+
+			.header {
+				position: relative;
+				overflow: hidden;
+				margin: -2em -2em .8em;
+				padding: .8em 2em .8em;
+				background-color: #eee;
+				border-bottom: 1px solid #ddd;
+			}
+
+			.cf-error-details {
+				position: relative;
+				overflow: hidden;
+			}
+				.cf-error-details h1 {
+					font-size: 24pt;
+					color: #aaa;
+				}
+
+				ul.cferror_details {
+					list-style: none;
+					padding: 0;
+					margin: .4em 0 0;
+					float: left;
+					clear: left;
+				}
+					ul.cferror_details li {
+							padding: .2em .4em;
+					}
+						ul.cferror_details li + li {
+							border-top: 1px solid #ddd;
+						}
+
+			a.action {
+				background-color: #9bca3e;
+				border-color: #709429;
+				border-style: solid;
+				border-width: 0 0 3pt;
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				padding: .5em 1em;
+				font-size: 14pt;
+				font-weight: 400;
+				line-height: 1;
+				margin: 5pt 0;
+				display: block;
+				float: right;
+			}
+				a.action:hover {
+					border-color: #82ac2f;
+					background-color: #bada7a;
+				}
+
+			@media (max-width: 50em) {
+				body {
+					padding: .8em;
+				}
+
+				.header {
+					margin: -.8em -.8em .8em;
+					padding: .8em;
+				}
+			}
+
+			@media (max-width: 37em) {
+				h1.title {
+					clear: left;
+				}
+
+				a.action {
+					float: left;
+				}
+			}
+			/* ]]> */
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<a class="action" href="/" onclick="document.cookie='cf_use_ob=0;path=/';window.location.reload();return false;" data-translate="retry_for_live">Retry for a live version</a>
+			<h1 class="title">Connection Error</h1>
+		</div>
+
+		<!--::CLOUDFLARE_ERROR_500S_BOX::-->
+		<div class="cf-error-details cf-error-522">
+			<h1>Connection timed out</h1>
+			<p data-translate="connection_timed_out">The initial connection between CloudFlare's network and the origin web server timed out. As a result, the web page can not be displayed.</p>
+			<ul class="cferror_details">
+				<li>Ray ID: 000000000000000</li>
+				<li>Your IP address: 127.0.0.1</li>
+				<li>Error reference number: 522</li>
+				<li>CloudFlare Location: San Jose</li>
+			</ul>
+		</div>
+
+		<p>This is a temporary error.  If the problem persists, please contact NamePros support via <a href="&#109;a&#105;lto&#58;support&#64;namepros&#46;com">support&#64;namepros&#46;com</a> and provide the details listed above.</p>
+
+		<!--[if true]><script>document.write(decodeURIComponent('%3Cscript%20src%3D%22https%3A%2F%2Fajax.googleapis.com%2Fajax%2Flibs%2Fjquery%2F1.11.1%2Fjquery.min.js%22%3E%3C%2Fscript%3E'));</script><![endif]-->
+		<!--[if false]><!--><script>document.write(decodeURIComponent('%3Cscript%20src%3D%22https%3A%2F%2Fajax.googleapis.com%2Fajax%2Flibs%2Fjquery%2F2.1.1%2Fjquery.min.js%22%3E%3C%2Fscript%3E'));</script><!--<![endif]-->
+
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		</script>
+
+		<script>
+			(function() {
+				document.cookie = 'cf_use_ob=0;path=/';
+
+				var keymap = {
+					'Ray ID': 'ray',
+					'Your IP address': 'ip',
+					'Error reference number': 'status',
+					'CloudFlare Location': 'edge'
+				};
+
+				function getErrorDetails() {
+					var error = {};
+
+					$('.cferror_details li').each(function() {
+						try {
+							var $this = $(this);
+							var text = $this.text();
+							var tokens = text.split(': ');
+
+							if (tokens.length != 2 || !(tokens[0] in keymap)) {
+								return;
+							}
+
+							var key = keymap[tokens[0]];
+							var value = tokens[1];
+
+							switch (key) {
+								case 'status':
+									value = 1 * value;
+									break;
+							}
+
+							error[key] = value;
+						} catch (ex) {
+							if ('console' in window) {
+								window.console.log(ex);
+							}
+						}
+					});
+
+					if (error.ray == 0 || error.ip == '127.0.0.1') {
+						error.debug = true;
+					} else {
+						error.debug = false;
+					}
+
+					return error;
+				}
+
+				$(function() {
+					var error = getErrorDetails();
+
+					exception = {
+						exDescription: 'CloudFlare' + error.status,
+						exFatal: true,
+						nonInteraction: true
+					};
+
+					if (error.debug) {
+						alert(JSON.stringify(exception));
+					} else {
+						ga('create', 'UA-43158854-1', 'auto');
+						ga('require', 'displayfeatures');
+						ga('send', 'pageview');
+						ga('send', 'exception', exception);
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
