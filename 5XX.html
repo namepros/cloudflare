@@ -185,13 +185,19 @@
 						nonInteraction: true
 					};
 
-					if (error.debug) {
-						alert(JSON.stringify(exception));
-					} else {
+					if (!error.debug) {
 						ga('create', 'UA-43158854-1', 'auto');
 						ga('require', 'displayfeatures');
 						ga('send', 'pageview');
 						ga('send', 'exception', exception);
+					}
+					
+					if ('console' in window) {
+						if ('error' in window.console) {
+							console.error(error);
+						} else if ('log' in window.console) {
+							console.log(error);
+						}
 					}
 				});
 			})();
