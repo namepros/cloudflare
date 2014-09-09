@@ -139,8 +139,13 @@
 
 				function getErrorDetails() {
 					var error = {};
+					var els = $('.cferror_details li');
 
-					$('.cferror_details li').each(function() {
+					if (!els.length) {
+						return false;
+					}
+
+					els.each(function() {
 						try {
 							var $this = $(this);
 							var text = $this.text();
@@ -178,6 +183,10 @@
 
 				$(function() {
 					var error = getErrorDetails();
+
+					if (!error) {
+						return;
+					}
 
 					exception = {
 						exDescription: 'CloudFlare' + error.status,
