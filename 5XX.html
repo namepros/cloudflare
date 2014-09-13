@@ -172,7 +172,7 @@
 						}
 					});
 
-					if (error.ray == 0 || error.ip == '127.0.0.1') {
+					if (window.location.hostname != 'www.namepros.com' || error.ray == 0 || error.ip == '127.0.0.1') {
 						error.debug = true;
 					} else {
 						error.debug = false;
