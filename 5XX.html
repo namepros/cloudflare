@@ -189,17 +189,24 @@
 						return;
 					}
 
-					exception = {
-						exDescription: 'CloudFlare' + error.status,
-						exFatal: true,
-						nonInteraction: true
-					};
-
 					if (!error.debug) {
 						ga('create', 'UA-43158854-1', 'auto');
 						ga('require', 'displayfeatures');
 						ga('send', 'pageview');
-						ga('send', 'exception', exception);
+						setTimeout(0, function() {
+							ga('send', 'exception', {
+								exDescription: 'Datacenter:' + error.edge,
+								exFatal: true,
+								nonInteraction: true
+							});
+						});
+						setTimeout(0, function() {
+							ga('send', 'exception', {
+								exDescription: 'CloudFlare' + error.status,
+								exFatal: true,
+								nonInteraction: true
+							});
+						});
 					}
 					
 					if ('console' in window) {
